@@ -12,16 +12,22 @@ namespace :radiant do
         end
       end
       
-      desc "Copies files in public/admin"
-      task :move_files => :environment do
-        extension_public = File.join(File.dirname(__FILE__), '../', '../', 'public')
-        cp_r extension_public, RAILS_ROOT
+      desc "Copies public assets of the CopyMove extension to the instance public/ directory."
+      task :update => :environment do
+        is_svn_or_dir = proc {|path| path =~ /\.svn/ || File.directory?(path) }
+        Dir[CopyMoveExtension.root + "/public/**/*"].reject(&is_svn_or_dir).each do |file|
+          path = file.sub(CopyMoveExtension.root, '')
+          directory = File.dirname(path)
+          puts "Copying #{path}..."
+          mkdir_p RAILS_ROOT + directory
+          cp file, RAILS_ROOT + path
+        end
       end
       
       desc "Migrates and copies files in public/admin"
-      task :install => [:environment, :migrate, :move_files] do        
+      task :install => [:environment, :migrate, :update] do
       end
     
     end
   end
-end unless __FILE__.include? '_darcs'
+end

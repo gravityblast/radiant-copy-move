@@ -1,26 +1,28 @@
 = CopyMove
 
-  Created by: Andrea Franz - bigchieflabs.com/blog/
+  Created by: Andrea Franz - http://gravityblast.com
   Version: 1.8.4
-  Contact: andrea AT bigchief DOT it
+  Contact: andrea AT gravityblast DOT it
 
-It adds a new action ('CopyMove') in the Radiant's administration interface near the 'Add child' button.
-With this extension you can copy and move a page and all its children.
+This extension adds a new action ('CopyMove') in the Radiant's administration interface near the 'Add child' button. With this extension you can copy or move a page (and all of its children).
+
+== Requirements
+
+You need the shards extension for this to work. See http://groups.google.com/group/radiantcms-dev/browse_frm/thread/d07f7fffd84b3ce0/5efa6fd6c2e1668e?lnk=gst&q=shards#5efa6fd6c2e1668e
 
 == Installation
 
-Get the latest version of CopyMove extension with darcs:
+Get the latest version of CopyMove extension code:
 
-	darcs get http://darcs.bigchieflabs.com/radiant/extensions/copy_move/
-
-...or download it in your vendor/extensions folder from here:
-
-	http://darcs.bigchieflabs.com/radiant/extensions/copy_move/copy_move.tar.gz
+	svn co http://dev.gravityblast.com/svn/projects/radiant/extensions/copy_move/
 	
-From your Rails app root type this commands:
+From your Rails app root type this command:
 
-  rake radiant:extensions:copy_move:install
+  rake RAILS_ENV=production radiant:extensions:copy_move:install
+
+Which will copy some needed files to the public directory of your app.
 
 == Contributors
 
- Mario T. Lanza
+ Benny Degezelle
+ Mario T. Lanza     
