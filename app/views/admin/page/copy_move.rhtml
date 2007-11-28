@@ -1,0 +1,52 @@
+<script type="text/javascript" charset="utf-8">
+	function toggle_advanced() {
+		['advanced_options', 'open_advanced_options', 'close_advanced_options'].each(function(id) {
+			Element.toggle(id);
+		});
+	}
+</script>
+
+<h1>CopyMove</h1>
+
+<p>Do you want to create a copy of <strong><%= @page.title %></strong>?</p>
+
+<form method="post">
+	<div id="advanced_options" style="display: none;">
+		<input type="radio" name="duplicate_what" id="duplicate_page" value="page" checked="checked" /><label for="duplicate_page"> Copy only '<strong><%= @page.title %></strong>' page. </label><br />
+		<input type="radio" name="duplicate_what" id="duplicate_page_and_children" value="page_and_children" /> <label for="duplicate_page_and_children">Copy '<strong><%= @page.title %></strong>' and its children. </label><br />
+		<input type="radio" name="duplicate_what" id="duplicate_tree" value="tree" /><label for="duplicate_tree"> Copy whole tree. </label><br />
+		<input type="radio" <%= @page.parent ? "" : disabled="disabled" %> name="duplicate_what" id="move_page" value="move" /><label for="move_page"> Only move page. </label><br /><br />
+		Copy or move under
+		<%
+		def build_tree page, list, level = 0
+			label = "#{'-'*level}#{page.title}"
+			id = page.id
+			list << [label, id]
+			page.children.each do |p|
+				build_tree p, list, level + 1
+			end
+			list
+		end
+
+		home = Page.find_by_parent_id nil
+		list = build_tree home, []
+
+		options = options_for_select list, (@page.parent ? @page.parent.id : nil)
+		-%>
+		<%= select_tag 'new_parent_id', options %>
+	</div>
+	<p>
+		<small id="close_advanced_options" style="display: none;"><a href="#" onclick="toggle_advanced(); return false;">Close advanced options</a></small>
+		<small id="open_advanced_options"><a href="#" onclick="toggle_advanced(); return false;">Advanced options</a></small>
+	</p>
+  <p class="buttons">
+		<%= submit_tag "Ok", :class => 'button' %>
+		or <%= link_to 'Cancel', page_index_url %>
+	</p>
+	
+</form> 
+<% unless @page.parent -%>
+<script type="text/javascript" charset="utf-8">
+	Event.observe(window, 'load', toggle_advanced);
+</script>
+<% end -%>

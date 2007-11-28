@@ -1,0 +1,53 @@
+<%
+count = page.children.count
+children = count > 0
+expanded = expanded_rows.include?(page.id)
+padding_left = (level * 22) + 4
+
+children_class = children ? (expanded ? ' children-visible' : ' children-hidden') : ' no-children'
+virtual_class = page.virtual? ? " virtual": ""
+
+expander = children ? image((expanded ? "collapse" : "expand"), :class => "expander", :alt => 'toggle children', :title => '', :align => 'center') : ""
+
+icon_name = page.virtual? ? "virtual-page" : "page"
+icon = image(icon_name, :class => "icon", :alt => 'page-icon', :title => '', :align => 'center')
+
+title = %{<span class="title">#{ page.title }</span>}
+
+display_name = page.class.display_name
+page_type = display_name == 'Page' ? '' : %{<small class="info">(#{ display_name })</small>}
+
+spinner = image('spinner.gif', :class => 'busy', :id => "busy-#{page.id}", :alt => "", :title => "", :align => "center", :style => 'display: none;')
+-%>
+    <tr id="page-<%= page.id %>" class="node level-<%= level %><%= children_class %><%= virtual_class %>">
+      <td class="page" style="padding-left: <%= padding_left %>px">
+        <span class="w1">
+<% if simple -%>
+          <%= icon %>
+          <%= title %>
+<% else -%>
+          <%= expander %><a href="<%= page_edit_url(:id => page) %>" title="<%= page.url %>"><%= icon %> <%= title %></a> 
+          <%= page_type %>
+          <%= spinner %>
+<% end -%>
+        </span>
+      </td>
+<% unless simple -%>
+      <td class="status <%= page.status.name.downcase %>-status"><%= page.status.name %></td>
+      <td class="add-child"><%= link_to image('add-child', :alt => 'add child'), page_new_url(:parent_id => page) %></td>
+      <td class="duplicate-child">
+				<%= link_to image('copy-move', :alt => 'CopyMove'), page_copy_move_url(:id => page) %>
+			</td>
+      <td class="remove"><%= link_to image('remove', :alt => 'remove page'), page_remove_url(:id => page) %></td>
+<% end -%>
+    </tr>
+<% level = level + 1 -%>
+<%
+if expanded
+  page.children.each do |child|
+-%>
+<%= render_node child, :level => level, :simple => simple -%>
+<%
+  end
+end
+-%>
