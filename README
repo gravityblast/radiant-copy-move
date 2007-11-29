@@ -1,7 +1,7 @@
 = CopyMove
 
   Created by: Andrea Franz - http://gravityblast.com
-  Version: 1.8.4
+  Version: 1.9.0
   Contact: andrea AT gravityblast DOT it
 
 This extension adds a new action ('CopyMove') in the Radiant's administration interface near the 'Add child' button. With this extension you can copy or move a page (and all of its children).

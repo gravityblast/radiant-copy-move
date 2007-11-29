@@ -1,9 +1,9 @@
 require_dependency 'application'
 
 class CopyMoveExtension < Radiant::Extension
-  version "1.8.4"
+  version "1.9.0"
   description "Adds the ability to copy and move a page and all of its children"
-  url "http://gravityblast.com/projects/radiant-page-utilities/"
+  url "http://gravityblast.com/projects/radiant-copymove-extension/"
     
   define_routes do |map|
     map.copy_move_index       'admin/pages/copy_move/:id',            :controller => 'copy_move', :action => 'index'
