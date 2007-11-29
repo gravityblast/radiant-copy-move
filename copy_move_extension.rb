@@ -6,12 +6,13 @@ class CopyMoveExtension < Radiant::Extension
   url "http://gravityblast.com/projects/radiant-page-utilities/"
     
   define_routes do |map|
-    map.page_copy_move  'admin/pages/copy_move/:id', :controller => 'admin/page', :action => 'copy_move'
+    map.copy_move_index       'admin/pages/copy_move/:id',            :controller => 'copy_move', :action => 'index'
+    map.copy_move_copy_move   'admin/pages/copy_move/:id/copy_move',  :controller => 'copy_move', :action => 'copy_move'
   end
   
   def activate
     raise "The Shards extension is required and must be loaded first!" unless defined?(Shards)
-    Admin::PageController.class_eval %{ include CopyMovePageControllerExtensions }
+    admin.page.index.add :sitemap_head, 'copy_move_extra_th'
     admin.page.index.add :node, 'copy_move_extra_td', :after => "add_child_column"
   end
   
