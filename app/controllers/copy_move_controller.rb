@@ -55,12 +55,10 @@ private
     new_title, new_slug, i = '', '', 0
     loop do
       case i
-      when 0 then copy = ""
-      when 1 then copy = " (Copy)"
-      else copy = " (Copy #{i})"
+      when 0 then new_title = page.title; new_slug = page.slug
+      when 1 then new_title = "#{page.title} (Copy)"; new_slug = "#{page.slug}-#{i+1}"
+      else new_title = "#{page.title} (Copy #{i})"; new_slug = "#{page.slug}-#{i+1}"
       end
-      new_title = "#{page.title}#{copy}"
-      new_slug = new_title.downcase.gsub(/[^-a-z0-9~\s\.:;+=_]/, '').gsub(/[\s\.:;=+]+/, '-')
       break unless Page.find(:first, :conditions => ["parent_id = ? AND slug = ?", parent.id, new_slug])
       i += 1
     end

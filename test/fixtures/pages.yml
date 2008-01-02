@@ -39,3 +39,11 @@ subpage:
   status_id: 100
   parent_id: 1
   published_at: <%= 5.days.ago.to_s :db %>
+extensions2:
+  id: 6
+  title: Extensions
+  breadcrumb: extensions
+  slug: extensions2
+  status_id: 100
+  parent_id: 1
+  published_at: <%= 5.days.ago.to_s :db %>
