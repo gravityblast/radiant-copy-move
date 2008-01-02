@@ -1,7 +1,7 @@
 require_dependency 'application'
 
 class CopyMoveExtension < Radiant::Extension
-  version "1.9.0"
+  version "1.9.1"
   description "Adds the ability to copy and move a page and all of its children"
   url "http://gravityblast.com/projects/radiant-copymove-extension/"
     
