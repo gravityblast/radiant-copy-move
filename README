@@ -2,7 +2,7 @@
 
   Created by: Andrea Franz - http://gravityblast.com
   Version: 1.9.1
-  Contact: andrea AT gravityblast DOT it
+  Contact: andrea AT gravityblast DOT com
 
 This extension adds a new action ('CopyMove') in the Radiant's administration interface near the 'Add child' button. With this extension you can copy or move a page (and all of its children).
 
@@ -15,6 +15,10 @@ You need the shards extension for this to work. See http://groups.google.com/gro
 Get the latest version of CopyMove extension code:
 
 	svn co http://dev.gravityblast.com/svn/projects/radiant/extensions/copy_move/
+	
+Open the environment.rb and set shards as first extension to be loaded:
+
+  config.extensions = [ :shards, :textile_filter, :markdown_filter, :all ] 
 	
 From your Rails app root type this command:
 
