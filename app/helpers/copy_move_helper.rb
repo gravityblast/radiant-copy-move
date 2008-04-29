@@ -1,7 +1,9 @@
 module CopyMoveHelper   
   def page_parent_select_tag
-    home = Page.find_by_parent_id nil
-    list = build_tree home, []
+    homes = Page.find_all_by_parent_id nil
+    list = homes.inject([]) do |l, home|
+      l.concat build_tree(home, [])
+    end
     options = options_for_select list, (@page.parent ? @page.parent.id : nil)
     select_tag 'parent', options    
   end
