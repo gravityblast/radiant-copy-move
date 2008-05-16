@@ -8,21 +8,28 @@ This extension adds a new action ('CopyMove') in the Radiant's administration in
 
 == Requirements
 
-You need the shards extension for this to work. See http://groups.google.com/group/radiantcms-dev/browse_frm/thread/d07f7fffd84b3ce0/5efa6fd6c2e1668e?lnk=gst&q=shards#5efa6fd6c2e1668e
+You need the shards extension for this to work for Radiant versions 0.6.6 and under. Versions 0.6.7 and greater have Shards built in.
+
+See http://groups.google.com/group/radiantcms-dev/browse_frm/thread/d07f7fffd84b3ce0/5efa6fd6c2e1668e?lnk=gst&q=shards#5efa6fd6c2e1668e
 
 == Installation
 
-Get the latest version of CopyMove extension code:
+1. Get the latest version of CopyMove extension code:
   
   cd vendor/extensions  
   
 	git clone git://github.com/pilu/radiant-copy-move.git copy_move
-	
-Open the environment.rb and set shards as first extension to be loaded:
 
-  config.extensions = [ :shards, :textile_filter, :markdown_filter, :all ] 
-	
-From your Rails app root type this command:
+1.a FOR RADIANT VERSION < 0.6.7
+
+Open the environment.rb and set shards as first extension to be loaded:
+  config.extensions = [ :shards, :textile_filter, :markdown_filter, :all ]
+
+1.b FOR RADIANT VERSION >= 0.6.7
+
+Shards is already installed and loaded.
+
+2. From your Rails app root type this command:
 
   rake RAILS_ENV=production radiant:extensions:copy_move:install
 
@@ -32,3 +39,4 @@ Which will copy some needed files to the public directory of your app.
 
  Benny Degezelle
  Mario T. Lanza     
+ Daniel Collis-Puro
