@@ -68,12 +68,14 @@ private
   def duplicate_page(page, new_parent)    
     new_title, new_slug = suggest_title_and_slug_for_new_page(page, new_parent)
     new_status_id = params[:status_id].blank? ? page.status_id : params[:status_id]
-    new_page = Page.create(
-      :title => new_title, :slug => new_slug, :breadcrumb => new_title, :class_name => page.class_name,
-      :status_id => new_status_id, :parent_id => new_parent.id, :layout_id => page.layout_id
-    ) 
+    new_page = page.clone
+    new_page.title = new_title
+    new_page.slug = new_slug
+    new_page.status_id = new_status_id
+    new_page.parent = new_parent
+    new_page.save
     page.parts.each do |part|
-      new_page.parts << PagePart.create(:name => part.name, :filter_id => part.filter_id, :content => part.content)
+      new_page.parts << part.clone
     end
     new_page
   end
