@@ -1,0 +1,43 @@
+As the name implies, "Copy/move" allows you to copy or move a single page up to an entire tree of pages from one part of the website to another
+
+== Usage
+
+To copy or move a page or tree click the "Copy/Move" button from the tree list on the "pages" page for the page you want to copy or move.
+
+If you have multiple view types for pages then the "Copy/Move" button will only appear on the "Tree view".
+If you have access permissions on page they will be copied when the new page is created and will be maintained if the page is moved
+
+== Options
+
+Once you have clicked the "Copy/Move" button you will be taken to a page that allows you to decide how the copy/move should take place.
+
+=== What do you want to do?
+
+These 4 radio buttons that allow you to determine exactly what happens.
+
+==== Copy only 'X' page.
+
+This will copy only the selected page, no children will be copied.
+
+==== Copy 'X' and its first-level children.
+
+This will copy the selected page and all pages one level below it in the tree. 
+
+==== Copy 'X' and all of its children.
+
+This will copy the selected page and all pages below it in the tree. 
+
+==== Only move page. 
+
+Only move the page, do not create a copy, note that all pages below it in the tree wil be moved as well.
+
+=== Copy or move under
+
+Select the page which you would like to make the parent of the newly copied or moved page.
+
+=== Page status
+
+This allows you to set the status of the new page and all its children.
+* If you choose the "Use the same status" option then all the pages will retain their existing statuses
+* If you set to a status other than "Use the same status" then ALL the pages in the copied/moved tree will have their status changed.
+
