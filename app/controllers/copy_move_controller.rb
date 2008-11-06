@@ -87,8 +87,8 @@ private
       if recursive
         page.children.each do |sub_page|
           next if sub_page.id == @new_page.id
-          new_page = duplicate_page(sub_page, new_page)
-          duplicate_children(sub_page, new_page, true)
+          new_sub_page = duplicate_page(sub_page, new_page)
+          duplicate_children(sub_page, new_sub_page, true)
         end
       end
     end
