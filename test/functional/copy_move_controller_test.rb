@@ -17,7 +17,7 @@ class CopyMoveControllerTest < Test::Unit::TestCase
   
   def test_index_should_redirect_if_page_does_not_exist
     get :index, :id => 1111
-    assert_response :redirect, page_index_url
+    assert_response :redirect, admin_pages_url
   end
   
   def test_index_should_not_redirect_if_page_exists
@@ -27,7 +27,7 @@ class CopyMoveControllerTest < Test::Unit::TestCase
    
   def test_copy_move_should_redirect_if_page_does_not_exist
     post :copy_move, :id => 9999
-    assert_response :redirect, page_index_url    
+    assert_response :redirect, admin_pages_url    
   end
   
   def test_copy_move_should_duplicate_page
