@@ -1,4 +1,4 @@
-require_dependency 'application'
+require_dependency 'application_controller'
 
 class CopyMoveExtension < Radiant::Extension
   version "1.9.1"
