@@ -4,17 +4,16 @@ module CopyMoveHelper
     list = homes.inject([]) do |l, home|
       l.concat build_tree(home, [])
     end
-    options = options_for_select list, (@page.parent ? @page.parent.id : nil)
-    select_tag 'parent', options    
+    select_tag 'parent_id', options, options_for_select(list)
   end
   
-  def build_tree page, list, level = 0
-  	label = "#{'-'*level}#{page.title}"
-  	id = page.id
-  	list << [label, id]
-  	page.children.each do |p|
-  		build_tree p, list, level + 1
-  	end
-  	list
+  def build_tree(page, list, level = 0)
+    label = "#{'-'*level}#{page.title}"
+    id = page.id
+    list << [label, id]
+    page.children.each do |p|
+      build_tree p, list, level + 1
+    end
+    list
   end
 end
