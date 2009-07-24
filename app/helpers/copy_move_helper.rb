@@ -4,7 +4,7 @@ module CopyMoveHelper
     list = homes.inject([]) do |l, home|
       l.concat build_tree(home, [])
     end
-    select_tag 'parent_id', options, options_for_select(list)
+    select_tag 'parent_id', options_for_select(list)
   end
   
   def build_tree(page, list, level = 0)

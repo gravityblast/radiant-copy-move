@@ -1,0 +1,8 @@
+- unless simple
+  %td.copy-move
+    = link_to_function image('copy-move', :alt => 'CopyMove'), "$(this).next('ul').toggle();Event.stop(event);"
+    %ul.popup-menu{:style => "display:none"}
+      %li= link_to "Copy page only", copy_page_admin_page_url(page)
+      %li= link_to "Copy with first-level children", copy_children_admin_page_url(page)
+      %li= link_to "Copy whole subtree", copy_tree_admin_page_url(page)
+      %li= link_to "Move entire subtree", move_admin_page_url(page)

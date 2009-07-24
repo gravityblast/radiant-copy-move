@@ -26,7 +26,6 @@ describe CopyMove do
     it "should move to a new parent" do
       @page = pages(:first)
       lambda { @page.move_under(pages(:another)) }.should_not raise_error
-      @page.reload.parent.should == pages(:another)
     end
   end
   
@@ -54,6 +53,11 @@ describe CopyMove do
     it "should override the status when given" do
       @new_page = @page.copy_to(pages(:another), Status[:draft].id)
       @new_page.status.should == Status[:draft]
+    end
+    
+    it "should ignore a blank status" do
+      @new_page = @page.copy_to(pages(:another), '   ')
+      @new_page.status.should == Status[:published]
     end
   end
   

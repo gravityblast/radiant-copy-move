@@ -1,0 +1,52 @@
+- content_for :popups do
+  #copy-move.popup{:style => "display:none"}
+    - form_tag '#', :method => :post do
+      %h3 Copy or move page
+      %p
+        %label{:for => 'parent_id'} New parent:
+        = page_parent_select_tag
+      %p
+        %label{:for => 'status_id'} New status:
+        = select_tag "status_id", options_for_select(Status.find_all.map{ |s| [s.name, s.id] }.unshift(['Use the same status', nil]))
+      %p.buttons
+        = submit_tag "OK"
+        or
+        = link_to_function "Cancel", "$(this).up('.popup').hide();"
+- content_for :page_css do
+  :sass
+    td.copy-move
+      position: relative
+      ul.popup-menu
+        position: absolute
+        z-index: 1000
+        margin-top: 0.5em
+        margin-left: -1em
+        background: white
+        border:
+          width: 1px
+          color: black
+          style: solid
+        border-bottom: none
+        padding: 0
+        li
+          list-style: none
+          a
+            display: block
+            padding: 0.5em
+            border-bottom: 1px solid black
+            color: black
+            &:hover
+              background-color: #ffc
+- content_for :page_scripts do 
+  :plain
+    document.observe('dom:loaded', function(){
+      $(document.body).observe('click', function(){$$('ul.popup-menu').invoke('hide');});
+      $$('td.copy-move ul.popup-menu a').each(function(element){
+          element.observe('click', function(evt){
+            evt.stop();
+            element.up('ul').hide();
+            center($('copy-move'));
+            $('copy-move').show().down('form').setAttribute('action', element.href);
+          });
+        });
+      });    

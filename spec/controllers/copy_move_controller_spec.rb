@@ -7,9 +7,9 @@ describe Admin::PagesController do
   end
   
   describe "routes" do
-    it "should route URLs to the copy action" do
-      route_for(:controller => "admin/pages", :action => "copy", :id => "1").should == "/admin/pages/1/copy"
-      params_from(:post, "/admin/pages/1/copy").should == {:controller => "admin/pages", :action => "copy", :id => "1"}
+    it "should route URLs to the copy_page action" do
+      route_for(:controller => "admin/pages", :action => "copy_page", :id => "1").should == "/admin/pages/1/copy_page"
+      params_from(:post, "/admin/pages/1/copy_page").should == {:controller => "admin/pages", :action => "copy_page", :id => "1"}
     end
     
     it "should route URLs to the copy_children action" do
@@ -21,11 +21,16 @@ describe Admin::PagesController do
       route_for(:controller => "admin/pages", :action => "copy_tree", :id => "1").should == "/admin/pages/1/copy_tree"
       params_from(:post, "/admin/pages/1/copy_tree").should == {:controller => "admin/pages", :action => "copy_tree", :id => "1"}
     end
+    
+    it "should route URLs to the move action" do
+      route_for(:controller => "admin/pages", :action => "move", :id => "1").should == "/admin/pages/1/move"
+      params_from(:post, "/admin/pages/1/move").should == {:controller => "admin/pages", :action => "move", :id => "1"}
+    end
   end
   
-  describe "POST to /admin/pages/:id/copy" do
+  describe "POST to /admin/pages/:id/copy_page" do
     before :each do
-      post :copy, :id => page_id(:first), :parent_id => page_id(:another)
+      post :copy_page, :id => page_id(:first), :parent_id => page_id(:another)
     end
     
     it "should load the page" do
