@@ -2,3 +2,26 @@
 	padding-left:0pt;
 	width:100px;
 }
+
+td.copy-move {
+  position: relative; }
+  td.copy-move ul.popup-menu {
+    position: absolute;
+    z-index: 1000;
+    margin-top: 0.5em;
+    margin-left: -1em;
+    background: white;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-bottom: none;
+    padding: 0; }
+    td.copy-move ul.popup-menu li {
+      list-style: none; }
+      td.copy-move ul.popup-menu li a {
+        display: block;
+        padding: 0.5em;
+        border-bottom: 1px solid black;
+        color: black; }
+        td.copy-move ul.popup-menu li a:hover {
+          background-color: #ffc; }

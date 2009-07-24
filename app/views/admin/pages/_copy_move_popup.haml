@@ -12,31 +12,6 @@
         = submit_tag "OK"
         or
         = link_to_function "Cancel", "$(this).up('.popup').hide();"
-- content_for :page_css do
-  :sass
-    td.copy-move
-      position: relative
-      ul.popup-menu
-        position: absolute
-        z-index: 1000
-        margin-top: 0.5em
-        margin-left: -1em
-        background: white
-        border:
-          width: 1px
-          color: black
-          style: solid
-        border-bottom: none
-        padding: 0
-        li
-          list-style: none
-          a
-            display: block
-            padding: 0.5em
-            border-bottom: 1px solid black
-            color: black
-            &:hover
-              background-color: #ffc
 - content_for :page_scripts do 
   :plain
     document.observe('dom:loaded', function(){
