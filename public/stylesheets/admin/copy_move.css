@@ -9,10 +9,10 @@ td.copy-move {
     position: absolute;
     z-index: 1000;
     margin-top: 0.5em;
-    margin-left: -1em;
+    margin-left: -1.5em;
     background: white;
     border-width: 1px;
-    border-color: black;
+    border-color: #bbb;
     border-style: solid;
     border-bottom: none;
     padding: 0; }
@@ -21,7 +21,10 @@ td.copy-move {
       td.copy-move ul.popup-menu li a {
         display: block;
         padding: 0.5em;
-        border-bottom: 1px solid black;
+        padding-left: 24px;
+        background-position: 4px center;
+        background-repeat: no-repeat;
+        border-bottom: 1px solid #bbb;
         color: black; }
         td.copy-move ul.popup-menu li a:hover {
-          background-color: #ffc; }
+          background-color: rgb(255, 255, 179); }
