@@ -20,8 +20,8 @@
           element.observe('click', function(evt){
             evt.stop();
             element.up('ul').hide();
-            center($('copy-move'));
+            $('copy-move').centerInViewport();
             $('copy-move').show().down('form').setAttribute('action', element.href);
           });
         });
-      });    
+      });
